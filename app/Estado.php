@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sexo extends Model
+class Estado extends Model
 {
-	protected $table = 'sexos';
+	protected $table = 'estados';
     protected $primaryKey = 'id';
     public $timestamps = false;
 
     protected $fillable = [
-        'id','nome'
+        'id','sicla','descricao'
     ];
 }

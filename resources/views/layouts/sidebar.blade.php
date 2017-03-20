@@ -6,9 +6,9 @@
     <ul class="nav nav-stacked">
         <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#config"><i class="glyphicon glyphicon-wrench"></i> Configurações <i class="glyphicon glyphicon-chevron-right"></i></a>
             <ul class="nav nav-stacked collapse" id="config">
-                <li><a href="#"> Localização</a></li>
-                <li><a href="#"> Categoria do Processo</a></li>
-                <li><a href="#"> SucCatedoria do Processo</a></li>
+                <li><a href="{{ url('/localizacao') }}"> Localização</a></li>
+                <li><a href="{{ url('/categoriaprocesso') }}"> Categoria do Processo</a></li>
+                <li><a href="{{ url('/subcategoriaprocesso') }}"> Subcatedoria do Processo</a></li>
                 <li><a href="#"> Juízo</a></li>
                 <li><a href="#"> Tribunal</a></li>
                 <li><a href="#"> Estagio do Processo</a></li>

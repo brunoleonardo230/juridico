@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sexo extends Model
+class Categoriaprocesso extends Model
 {
-	protected $table = 'sexos';
+	protected $table = 'categoriaprocesso';
     protected $primaryKey = 'id';
     public $timestamps = false;
 

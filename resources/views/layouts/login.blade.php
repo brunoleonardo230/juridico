@@ -30,7 +30,7 @@
 
     <style media="screen">
        label,h1 {
-          color: #FFF;
+          color: #222;
        }
     </style>
 
