@@ -45,6 +45,25 @@ Route::get('/subcategoriaprocesso/edit/{id}', 'SubcategoriaProcessoController@ed
 Route::post('/subcategoriaprocesso/edit', 'SubcategoriaProcessoController@update');
 Route::post('/subcategoriaprocesso/search', 'SubcategoriaProcessoController@search');
 
+// Categoria Tribunal (Juizo) routes
+Route::get('/categoriatribunal', 'CategoriaTribunalController@index');
+Route::get('/categoriatribunal/register', 'CategoriaTribunalController@create');
+Route::post('/categoriatribunal/register', 'CategoriaTribunalController@save');
+Route::get('/categoriatribunal/delete/{id}', 'CategoriaTribunalController@delete');
+Route::get('/categoriatribunal/edit/{id}', 'CategoriaTribunalController@edit');
+Route::post('/categoriatribunal/edit', 'CategoriaTribunalController@update');
+Route::post('/categoriatribunal/search', 'CategoriaTribunalController@search');
+
+// Estagio Processo routes
+Route::get('/estagioprocesso', 'EstagioProcessoController@index');
+Route::get('/estagioprocesso/register', 'EstagioProcessoController@create');
+Route::post('/estagioprocesso/register', 'EstagioProcessoController@save');
+Route::get('/estagioprocesso/delete/{id}', 'EstagioProcessoController@delete');
+Route::get('/estagioprocesso/edit/{id}', 'EstagioProcessoController@edit');
+Route::post('/estagioprocesso/edit', 'EstagioProcessoController@update');
+Route::post('/estagioprocesso/search', 'EstagioProcessoController@search');
+
+
 Route::get('laravel-version', function() {
     $laravel = app();
     return "Your Laravel version is ".$laravel::VERSION;

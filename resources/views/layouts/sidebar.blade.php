@@ -9,9 +9,9 @@
                 <li><a href="{{ url('/localizacao') }}"> Localização</a></li>
                 <li><a href="{{ url('/categoriaprocesso') }}"> Categoria do Processo</a></li>
                 <li><a href="{{ url('/subcategoriaprocesso') }}"> Subcatedoria do Processo</a></li>
-                <li><a href="#"> Juízo</a></li>
+                <li><a href="{{ url('/categoriatribunal') }}"> Juízo</a></li>
                 <li><a href="#"> Tribunal</a></li>
-                <li><a href="#"> Estagio do Processo</a></li>
+                <li><a href="{{ url('/estagioprocesso') }}"> Estagio do Processo</a></li>
             </ul>
         </li>
 
