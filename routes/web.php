@@ -65,6 +65,15 @@ Route::get('/estagioprocesso/edit/{id}', 'EstagioProcessoController@edit');
 Route::post('/estagioprocesso/edit', 'EstagioProcessoController@update');
 Route::post('/estagioprocesso/search', 'EstagioProcessoController@search');
 
+// Tribunal routes
+Route::get('/tribunal', 'TribunalController@index');
+Route::get('/tribunal/register', 'TribunalController@create');
+Route::post('/tribunal/register', 'TribunalController@save');
+Route::get('/tribunal/delete/{id}', 'TribunalController@delete');
+Route::get('/tribunal/edit/{id}', 'TribunalController@edit');
+Route::post('/tribunal/edit', 'TribunalController@update');
+Route::post('/tribunal/search', 'TribunalController@search');
+
 
 Route::get('laravel-version', function() {
     $laravel = app();
