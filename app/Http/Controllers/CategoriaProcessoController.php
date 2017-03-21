@@ -19,6 +19,17 @@ class CategoriaProcessoController extends Controller {
 
    }
 
+   public function search(Request $request) {
+
+      $title = 'Categoria do Processo';
+
+      $categoriaprocesso = Categoriaprocesso::where('nome', 'like', '%'.$request['search'].'%')
+         ->paginate(15);
+
+      return view('categoriaprocesso.index', compact('title', 'categoriaprocesso'));
+
+   }
+
    public function create() {
 
       $title = 'Cadastrar Categoria do Processo';
@@ -94,7 +105,7 @@ class CategoriaProcessoController extends Controller {
          'nome'         => 'required'
       ];
 
-      $categoriaprocesso = $request['nome'];
+      $nome = $request['nome'];
 
       $validator = Validator::make($request->all(), $rules);
 
@@ -113,7 +124,7 @@ class CategoriaProcessoController extends Controller {
 
          return redirect()->action('CategoriaProcessoController@index')
             ->with('class', 'success')
-            ->with('msg', 'Categoria do Processo "'.$categoriaprocesso.'" alterado com sucesso!');
+            ->with('msg', 'Categoria do Processo "'.$nome.'" alterado com sucesso!');
 
       }
 

@@ -11,7 +11,8 @@
 <div class="row">
    <div class="col-md-4"><a href="{{ url('/estagioprocesso/register') }}" class="btn btn-success">Cadastrar</a></div>
    <div class="col-md-3 col-md-offset-5">
-      <form class="form-inline">
+      <form class="form-inline" action="{{ url('/estagioprocesso/search')}}" method="post">
+            {{ csrf_field() }}
          <div class="form-group">
             <label class="sr-only" for="search">Buscar</label>
             <input type="text" class="form-control" id="search" name="search" placeholder="Buscar" required />
@@ -32,7 +33,7 @@
                   Código
                </th>
                <th>
-                  Nome do Estagio do Processo
+                  Nome do Estágio do Processo
                </th>
             </tr>
          </thead>

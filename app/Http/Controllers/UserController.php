@@ -22,6 +22,21 @@ class UserController extends Controller {
 
    }
 
+   public function search(Request $request) {
+
+      $title = 'Usuários';
+
+      $user = User::select('users.id as iduser','users.name','users.username','nivelacessos.nome')
+         ->join('nivelacessos', 'users.nivelacesso','=','nivelacessos.id')
+         ->where('users.name', 'like', '%'.$request['search'].'%')
+         ->orWhere('users.username', 'like', '%'.$request['search'].'%')
+         ->orWhere('nivelacessos.nome', 'like', '%'.$request['search'].'%')
+         ->paginate(15);
+
+      return view('user.index', compact('title', 'user'));
+
+   }
+
    public function create() {
 
       $title = 'Cadastrar Usuários';
@@ -39,8 +54,8 @@ class UserController extends Controller {
 
       $rules = [
          'name'         => 'required',
-         'email'       	=> 'required',
-         'username'     => 'required',
+         'email'       	=> 'required|email',
+         'username'     => 'required|unique:users,username',
          'nivelacesso'  => 'required'
       ];
 
@@ -110,7 +125,7 @@ class UserController extends Controller {
          'nivelacesso'           => 'required'
       ];
 
-      $usuario = $request['name'];
+      $nome = $request['name'];
 
       $validator = Validator::make($request->all(), $rules);
 
@@ -129,7 +144,7 @@ class UserController extends Controller {
 
          return redirect()->action('UserController@index')
             ->with('class', 'success')
-            ->with('msg', 'Usuário "'.$usuario.'" alterado com sucesso!');
+            ->with('msg', 'Usuário "'.$nome.'" alterado com sucesso!');
 
       }
 

@@ -21,6 +21,20 @@ class SubcategoriaProcessoController extends Controller {
 
    }
 
+   public function search(Request $request) {
+
+      $title = 'Subcategoria Processo';
+
+      $subcategoriaprocesso = Subcategoriaprocesso::select('subcategoriaprocesso.id','subcategoriaprocesso.nome','categoriaprocesso.nome as categoria')
+                     ->join('categoriaprocesso', 'subcategoriaprocesso.idcategoriaprocesso','=','categoriaprocesso.id')
+         ->where('subcategoriaprocesso.nome', 'like', '%'.$request['search'].'%')
+         ->orWhere('categoriaprocesso.nome', 'like', '%'.$request['search'].'%')
+         ->paginate(15);
+
+      return view('subcategoriaprocesso.index', compact('title', 'subcategoriaprocesso'));
+
+   }
+
    public function create() {
 
       $title = 'Cadastrar Subcategoria Processo';
@@ -102,7 +116,7 @@ class SubcategoriaProcessoController extends Controller {
          'idcategoriaprocesso'        => 'required'
       ];
 
-      $subcategoriaprocesso = $request['nome'];
+      $nome = $request['nome'];
 
       $validator = Validator::make($request->all(), $rules);
 
@@ -121,7 +135,7 @@ class SubcategoriaProcessoController extends Controller {
 
          return redirect()->action('SubcategoriaProcessoController@index')
             ->with('class', 'success')
-            ->with('msg', 'Subcategoria Processo "'.$subcategoriaprocesso.'" alterado com sucesso!');
+            ->with('msg', 'Subcategoria Processo "'.$nome.'" alterado com sucesso!');
 
       }
 

@@ -11,7 +11,7 @@ class EstagioProcessoController extends Controller {
 
    public function index() {
 
-      $title = 'Estagio do Processo';
+      $title = 'Estágio do Processo';
 
       $estagioprocesso = Estagioprocesso::orderBy('nome','asc')->get();
 
@@ -19,9 +19,20 @@ class EstagioProcessoController extends Controller {
 
    }
 
+   public function search(Request $request) {
+
+      $title = 'Estágio do Processo';
+
+      $estagioprocesso = Estagioprocesso::where('nome', 'like', '%'.$request['search'].'%')
+         ->paginate(15);
+
+      return view('estagioprocesso.index', compact('title', 'estagioprocesso'));
+
+   }
+
    public function create() {
 
-      $title = 'Cadastrar Estagio do Processo';
+      $title = 'Cadastrar Estágio do Processo';
 
       $url = '/estagioprocesso/register';
 
@@ -44,7 +55,7 @@ class EstagioProcessoController extends Controller {
 
          return redirect()->action('EstagioProcessoController@create')
             ->with('class', 'danger')
-            ->with('msg', 'Erro ao tentar cadastrar Estagio do Processo, por favor atente para os erros listados abaixo:')
+            ->with('msg', 'Erro ao tentar cadastrar Estágio do Processo, por favor atente para os erros listados abaixo:')
             ->withErrors($validator)
             ->withInput();
 
@@ -54,7 +65,7 @@ class EstagioProcessoController extends Controller {
 
          return redirect()->action('EstagioProcessoController@index')
             ->with('class', 'success')
-            ->with('msg', 'Cadastro do Estagio do Processo "'.$nome.'" realizado com sucesso!');
+            ->with('msg', 'Cadastro do Estágio do Processo "'.$nome.'" realizado com sucesso!');
 
       }
 
@@ -70,13 +81,13 @@ class EstagioProcessoController extends Controller {
 
       return redirect()->action('EstagioProcessoController@index')
          ->with('class', 'success')
-         ->with('msg', 'Estagio do Processo "'.$nome.'" excluido com sucesso!');
+         ->with('msg', 'Estágio do Processo "'.$nome.'" excluido com sucesso!');
 
    }
 
    public function edit($id) {
 
-      $title = 'Editar Estagio do Processo';
+      $title = 'Editar Estágio do Processo';
 
       $query = Estagioprocesso::find($id);
 
@@ -94,7 +105,7 @@ class EstagioProcessoController extends Controller {
          'nome'         => 'required'
       ];
 
-      $estagioprocesso = $request['nome'];
+      $nome = $request['nome'];
 
       $validator = Validator::make($request->all(), $rules);
 
@@ -102,7 +113,7 @@ class EstagioProcessoController extends Controller {
 
          return redirect()->action('EstagioProcessoController@edit',['id'=>$request['id']])
             ->with('class', 'danger')
-            ->with('msg', 'Erro ao tentar alterar o Estagio do Processo, por favor atente para os erros listados abaixo:')
+            ->with('msg', 'Erro ao tentar alterar o Estágio do Processo, por favor atente para os erros listados abaixo:')
             ->withErrors($validator)
             ->withInput();
 
@@ -113,7 +124,7 @@ class EstagioProcessoController extends Controller {
 
          return redirect()->action('EstagioProcessoController@index')
             ->with('class', 'success')
-            ->with('msg', 'Estagio do Processo "'.$estagioprocesso.'" alterado com sucesso!');
+            ->with('msg', 'Estágio do Processo "'.$nome.'" alterado com sucesso!');
 
       }
 

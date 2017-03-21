@@ -35,6 +35,7 @@
             @include('layouts.sidebar')
         </div>    
         <div class="col-sm-10">
+            @include('layouts.msg')
             @yield('content')
         </div>
             
@@ -42,7 +43,7 @@
 </div>
 <!-- /Main -->
 
-<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
+<footer class="text-center">IDAC - Instituto de Desenvolvimento e Apoio a Cidadania</footer>
 
 	<!-- script references -->
         <!-- jQuery -->

@@ -19,6 +19,17 @@ class CategoriaTribunalController extends Controller {
 
    }
 
+   public function search(Request $request) {
+
+      $title = 'Juizo';
+
+      $categoriatribunal = Categoriatribunal::where('nome', 'like', '%'.$request['search'].'%')
+         ->paginate(15);
+
+      return view('categoriatribunal.index', compact('title', 'categoriatribunal'));
+
+   }
+
    public function create() {
 
       $title = 'Cadastrar Juízo';

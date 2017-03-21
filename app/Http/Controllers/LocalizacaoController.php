@@ -21,6 +21,20 @@ class LocalizacaoController extends Controller {
 
    }
 
+   public function search(Request $request) {
+
+      $title = 'Localização';
+
+      $localizacao = Localizacao::select('localizacao.id','localizacao.nome','estados.descricao')
+         ->join('estados', 'localizacao.uf','=','estados.id')
+         ->where('localizacao.nome', 'like', '%'.$request['search'].'%')
+         ->orWhere('estados.descricao', 'like', '%'.$request['search'].'%')
+         ->paginate(15);
+
+      return view('localizacao.index', compact('title', 'localizacao'));
+
+   }
+
    public function create() {
 
       $title = 'Cadastrar Localização';
@@ -102,7 +116,7 @@ class LocalizacaoController extends Controller {
          'uf'        => 'required'
       ];
 
-      $localizacao = $request['nome'];
+      $nome = $request['nome'];
 
       $validator = Validator::make($request->all(), $rules);
 
@@ -121,7 +135,7 @@ class LocalizacaoController extends Controller {
 
          return redirect()->action('LocalizacaoController@index')
             ->with('class', 'success')
-            ->with('msg', 'Localização "'.$localizacao.'" alterado com sucesso!');
+            ->with('msg', 'Localização "'.$nome.'" alterado com sucesso!');
 
       }
 
